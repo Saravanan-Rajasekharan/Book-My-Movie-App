@@ -26,4 +26,9 @@ public class Theater {
     @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
     private List<TheaterSeats> theaterSeatsList= new ArrayList<>();
 
+    //This is parent wrt show entity
+
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    private List<Show> showList = new ArrayList<>();
+
 }

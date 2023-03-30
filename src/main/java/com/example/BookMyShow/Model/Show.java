@@ -10,7 +10,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name ="shows")
@@ -30,13 +32,31 @@ public class Show {
     @Enumerated(value=EnumType.STRING)
     private ShowType showType;
 
-    //Mappings
 
     @CreationTimestamp
     private Date createdOn;
 
     @UpdateTimestamp
     private Date updatedOn;
+
+    // This is a child w.r.t movie
+    @ManyToOne
+    @JoinColumn
+    private Movie movie;
+
+    //The show is child wrt to Theater
+
+    @ManyToOne
+    @JoinColumn
+    private Theater theater;
+
+    // Show is parent wrt Ticket
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    private List<Ticket> ticketList = new ArrayList<>();
+
+    //Show is parent wrt ShowSeat
+    @OneToMany(mappedBy ="show", cascade = CascadeType.ALL)
+    private List<ShowSeat> showSeatList = new ArrayList<>();
 
 
 

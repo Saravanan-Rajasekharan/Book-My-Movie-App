@@ -30,5 +30,9 @@ public class ShowSeat {
     @Enumerated(value = EnumType.STRING)
     private SeatType seatType;
 
+    @ManyToOne
+    @JoinColumn
+    private Show show;
+
 
 }
