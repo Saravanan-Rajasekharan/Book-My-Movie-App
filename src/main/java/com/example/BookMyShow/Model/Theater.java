@@ -1,27 +1,29 @@
 package com.example.BookMyShow.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="theater")
+@Table(name="theaters")
+@Data
+@NoArgsConstructor
 public class Theater {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String name;
 
     private String location;
 
-    //Mappings
+    //Parent wrt to theaterSeats
 
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    private List<TheaterSeats> theaterSeatsList= new ArrayList<>();
 
-
-
-
-    //Constructors
-
-
-
-
-
-    //Getters and Setters
 }

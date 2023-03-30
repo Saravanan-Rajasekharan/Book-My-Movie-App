@@ -1,27 +1,27 @@
 package com.example.BookMyShow.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.example.BookMyShow.Enum.SeatType;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="theaterSeats")
+@Data
+@NoArgsConstructor
 public class TheaterSeats {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String seatNo;
 
-    private String seatType;
+    private SeatType seatType;
 
-    //Mappings
+   //Mapping
 
-
-
-
-
-    //Constructors
-
-
-
-
-
-    //Getters and Setters
+    @ManyToOne
+    @JoinColumn
+    private Theater theater;
 }

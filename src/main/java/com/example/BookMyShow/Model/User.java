@@ -1,9 +1,14 @@
 package com.example.BookMyShow.Model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name="user")
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -12,13 +17,16 @@ public class User {
 
     private String name;
 
-    private String email;
-
     private int age;
 
+    @Column(unique = true, nullable = false)  /* required variable */
+    private String email;
+
+    @NonNull                    /* required variable */
+    @Column(unique = true)
     private String mobNo;
 
-    private String Address;
+    private String address;
 
     //Mappings
 
